@@ -1,0 +1,2 @@
+101=>{'id': 101, 'name': 'Jude', 'email': 'Jude@beatles.com', 'mobile': '1234123412', 'balance': 100000, 'cheque': 251101, 'intrate': 0.04, 'type': 'Savings', 'interest': 104000.0}
+102=>{'id': 102, 'name': 'Anu Sharma', 'email': 'anu151@gmail.com', 'mobile': '1234567898', 'balance': 100000, 'username': 'anuanu', 'pin': 9999, 'type': 'Current', 'interest': 100100.0}
