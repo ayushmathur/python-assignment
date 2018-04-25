@@ -1,0 +1,662 @@
+calender.py
+
+days=int(input("Enter the number of days in the month: "))
+day_of_week=int(input("Enter the starting day of the month(0..6): "))
+print('{:>4}{:>4}{:>4}{:>4}{:>4}{:>4}{:>4}'.format('Sa','M','T','W','Th','F','Su'))
+print(day_of_week*4*' '+'{:>4}'.format(1),end=" ")
+cnt=1
+for x in range(2,days+1):
+    if cnt+day_of_week==7 or day_of_week==6:
+        cnt=0
+        day_of_week=0
+        print("\n")
+    print('{:>3}'.format(x),end=" ")
+    cnt=cnt+1
+--------------------------------------------------------------------------------------
+histogram.py
+
+def histogram(num):
+    for i in num:
+       while i > 0:
+          print('*' * i)
+          break
+    
+
+values = input("Enter a set of numbers separated by a comma: ")
+
+num = list(map(int, values.split(',')))
+histogram(num)
+
+----------------------------------------------------------------------------------------
+palindrome.py
+
+punctuations = ''' !()-[]{};:'"\,<>./?@#$%^&*_~'''
+my_str = input("Enter a string: ")
+no_punct = ""
+for char in my_str.lower():
+   if char not in punctuations:
+       no_punct = no_punct+char
+if(no_punct==no_punct[::-1]):
+    print("The entered string in a palindrome.\n")
+else:
+    print("The entered string is not an palindrome.\n")
+
+-------------------------------------------------------------------------------------------
+pangram.py
+
+from string import ascii_lowercase as asc_lower
+def check(s):
+    return set(asc_lower) - set(s.lower()) == set([])
+strng=input("Enter string:")
+if(check(strng)==True):
+      print("The string is a pangram")
+else:
+      print("The string isn't a pangram")
+
+---------------------------------------------------------------------------------------------
+ceasercipher.py
+
+key = {'a':'n', 'b':'o', 'c':'p', 'd':'q', 'e':'r', 'f':'s', 'g':'t','h':'u', 'i':'v', 'j':'w', 'k':'x', 'l':'y', 'm':'z', 'n':'a', 'o':'b', 'p':'c',
+'q':'d', 'r':'e', 's':'f', 't':'g', 'u':'h', 'v':'i', 'w':'j', 'x':'k', 'y':'l', 'z':'m', 'A':'N', 'B':'O', 'C':'P', 'D':'Q', 
+'E':'R', 'F':'S', 'G':'T','H':'U', 'I':'V', 'J':'W', 'K':'X', 'L':'Y', 'M':'Z', 'N':'A', 'O':'B', 'P':'C', 'Q':'D', 'R':'E', 'S':'F', 
+'T':'G', 'U':'H', 'V':'I','W':'J', 'X':'K', 'Y':'L', 'Z':'M'}
+print("1.Encode.")
+print("2.Decoode")
+choice=int(input("Choose what you want to do: "))
+#value=input("Enter the string you want to encode: ")
+final=''
+if choice==1:
+    value=input("Enter the string you want to encode: ")
+    for x in value:
+        if x in key:
+            final=final+key[x]
+            #print(x,key[x])
+        else:
+            final=final+x
+    print(final,end=" ")
+else:
+    value=input("Enter the string you want to decode: ")
+    for x in value:
+        if x in key:
+            final=final+key[x]
+            #print(key[x])
+        else:
+            final=final+x
+    print(final,end=" ")
+    
+
+------------------------------------------------------------------------------------
+Day 3-Q1.
+
+def translate():
+    my_str=input("Enter the string to tranlate: ")
+    punctuations = ''' !()-[]{};:'"\,<>./?@#$%^&*_~'''
+    no_punct = ""
+    for char in my_str.lower():
+        if char not in punctuations:
+            no_punct = no_punct+char
+    vowels=['a','e','i','o','u']
+    final=''
+    for r in no_punct:
+        if r not in vowels:
+            final=final+r+"o"+r
+        else:
+            final=final+r
+    print(final)
+people={'Arham':'Blue','Lisa':'Yellow','Vinod':'Purple','Jenny':'Pink'}
+print(len(people))
+people['Lisa']='Red'
+print(people)
+del people['Jenny']
+print(people)
+for x in sorted(people):
+    print(x+":" +people[x])
+translate()
+-------------------------------------------------------------------------------------------------------
+factorial.py
+
+def fact(n):
+    fct=1
+    for x in range(1,n+1):
+        fct=fct*x
+        print(x,fct)
+num=int(input("Enter the number: "))
+fact(num) 
+
+-------------------------------------------------------------------------------------------------------
+overlapping.py
+
+def overlapping(lst1,lst2):
+    for x in lst1:
+        if x in lst2:
+            return "True"
+            break
+    else:
+        return "False"
+        
+a=[1,2,3,4,5]
+b=[6,7,8,9,0]
+ans=overlapping(a,b)
+print(ans)
+
+----------------------------------------------------------------------------------------------------------
+longest_word.py
+
+def find_longest_word(lst):
+    length=len(lst)
+    first=len(lst[0])
+    word=lst[0]
+    for i in range(0,length):
+        if first < len(lst[i]):
+            first=len(lst[i])
+            word=lst[i]
+    print("The longest word is: %s and length is: %d "%(word,first))
+
+a=['afterlongest','is','longest','veryyyyyyyyyyy']
+find_longest_word(a)        
+
+---------------------------------------------------------------------------------------------------------------   
+filter_words.py
+
+def filter_long_words(lst,n):
+    length=len(lst)
+    #first=len(lst[0])
+    #word=lst[0]
+    for i in range(0,length):
+        if len(lst[i]) > n:
+            print("word: %s and length is: %d "%(lst[i],len(lst[i])))
+
+a=['afterlongest','is','longest','veryyyyyyyyyyy']
+num=10
+filter_long_words(a,num) 
+       
+-------------------------------------------------------------------------------------------------------------------              
+correct.py
+
+import re
+def correct(string):
+    dot=re.sub(r'\.','. ',string)
+    sq=re.sub(r' +',' ',dot)
+    print(sq)
+   
+strng="This is     a spacce with a.dot    string  "
+correct(strng)
+
+-------------------------------------------------------------------------------------------------------------------
+ing.py
+
+import re
+def make_ing_form(string):
+    if string[-2]=='i' and string[-1]=='e':
+        ans=re.sub('ie','ying',string)
+        print(ans)
+    elif string[-1]=='e' and string[-2]!='e':
+        ans=re.sub('e','ing',string)
+        print(ans)
+    elif re.match(r'[^aeiou][aeiou][^aeiou]$',string):
+        ans=string[-1]+string[-1]+'ing'
+        ans1=re.sub(string[-1],ans,string)
+        print(ans1)
+    else:
+        ans=string+'ing'
+        print(ans)
+strng="see"  
+make_ing_form(strng)
+
+---------------------------------------------------------------------------------------------------------------
+file1.py
+
+eno=int(input("Enter the employee no: "))
+ename=input("Enter the employee name: ")
+esal=int(input("Enter the employee salary: "))
+edesig=input("Enter the employee designation: ")
+with open("emp.dat","a") as fh:
+    fh.write(str(eno)+":"+ename+":"+str(esal)+":"+edesig)
+    fh.write("\n")
+
+file2.py
+
+with open("emp.dat") as fh:
+    for line in fh:
+        line=line.rstrip()
+        spli=line.split(":")
+        if spli[3]=='Manager':
+            bonus=int(spli[2])+2000
+        elif spli[3]=='Analyst':
+            bonus=int(spli[2])+1500
+        else:
+            bonus=int(spli[2])+1000
+        print("The bonus added salary for employee "+spli[1]+" is ",bonus)
+
+----------------------------------------------------------------------------------------------------------------
+class_overloading.py
+
+class myclass:
+    def __init__(self,num=0,string=''):
+        self.num=num
+        self.string=string
+    def __str__(self):
+        return str(self.num)+" "+self.string
+    def __add__(self,other):
+        return self.num + ord(other.string[0])
+    def __sub__(self,other):
+        if self.num > ord(other.string[0]):
+            return self.num -ord(other.string[0])
+        else:
+            return ord(other.string[0])-self.num
+    def __mul__(self,other):
+        return self.num * ord(other.string[-1])
+
+obj1=myclass(10,'Nirmit')
+print(obj1)
+add=obj1 + obj1
+print(add)        
+sub=obj1 - obj1
+print(sub)
+mul=obj1*obj1
+print(mul)
+----------------------------------------------------------------------------------------------------------------
+database.py
+
+import sqlite3
+import re
+db=sqlite3.connect('assign.db')
+cursor=db.cursor()
+print("Connection done")
+
+#db.execute('drop table mytable')
+db.execute('create table if not exists assign_table(aid int,name text,bal int,email text,cheq_no int,usrnname text,pin int,acc_type text)')
+def insert():
+	acc_type=input("Enter Account type you want to open(savings/current): ")
+	if acc_type=='savings':
+		aid=int(input("Enter the account id: "))
+		name=input("Enter your name: ")
+		bal=int(input("Enter the opening balance: "))
+		email=input("Enter your email address: ")
+		cheq_no=int(input("Enter the cheque no: "))
+		cursor.execute('''insert into assign_table(aid,name,bal,email,cheq_no,acc_type) values(?,?,?,?,?,?)''',(aid,name,bal,email,cheq_no,acc_type))
+		db.commit()
+		print("Account successfully created..!")
+	else:
+		aid=int(input("Enter the account id: "))
+		name=input("Enter your name: ")
+		bal=int(input("Enter the opening balance: "))
+		email=input("Enter your email address: ")
+		cheq_no=int(input("Enter the cheque no: "))
+		usrnname=input("Enter the username: ")
+		pin=int(input("Enter the pin: "))
+		cursor.execute('''insert into assign_table(aid,name,bal,email,usrnname,pin,acc_type) values(?,?,?,?,?,?,?)''',(aid,name,bal,email,usrnname,pin,acc_type))
+		db.commit()
+		print("Account successfully created..!")
+def delete():
+	aid=int(input("Enter the account id you want to delete: "))
+	cursor.execute('''delete from assign_table where aid=?''',(aid,))
+	db.commit()
+	print("Account successfully deleted..!")
+def deposit():
+	aid=int(input("Enter the account id in which you want deposit: "))
+	depo=int(input("Enter the amount you want to deposit: "))
+	cursor.execute('''select * from assign_table where aid=?''',(aid,))
+	rows=cursor.fetchall()
+	for row in rows:
+		amt=row[2]
+	balance1=amt+depo
+	cursor.execute('''update assign_table set bal=? where aid=?''',(balance1,aid))
+	db.commit()
+	print("Account successfully deposited..!")
+def withdraw():
+	aid=int(input("Enter the account id from which you want to withdraw: "))
+	depo=int(input("Enter the amount you want to withdraw: "))
+	cursor.execute('''select * from assign_table where aid=?''',(aid,))
+	rows=cursor.fetchall()
+	for row in rows:
+		amt=row[2]
+	balance1=amt-depo
+	if balance1>1000:
+		cursor.execute('''update assign_table set bal=? where aid=?''',(balance1,aid))
+		db.commit()
+		print("Account successfully withdrawed..!")
+	else:
+		print("Minimum balance should not be less than 1000.")
+def transfer():
+	aid=int(input("Enter your account id: "))
+	aid1=int(input("Enter account if in which you want transfer: "))
+	depo=int(input("Enter the amount you want to transfer: "))
+	cursor.execute('''select * from assign_table where aid=?''',(aid,))
+	rows=cursor.fetchall()
+	for row in rows:
+		amt=row[2]
+	balance1=amt-depo
+	cursor.execute('''select * from assign_table where aid=?''',(aid1,))
+	rows=cursor.fetchall()
+	for row in rows:
+		amt1=row[2]
+	balance2=amt1+depo
+	if balance1>1000:
+		cursor.execute('''update assign_table set bal=? where aid=?''',(balance1,aid))
+		cursor.execute('''update assign_table set bal=? where aid=?''',(balance2,aid1))
+		db.commit()
+		print("Account successfully transfered..!")
+	else:
+		print("Minimum balance should not be less than 1000.")
+def check_balance():
+	aid=int(input("Enter the account id to check balance: "))
+	cursor.execute('''select * from assign_table where aid=?''',(aid,))
+	rows=cursor.fetchall()
+	for row in rows:
+		name=row[1]
+		amt=row[2]
+	print("The balance of %s is %d"%(name,amt))
+
+		
+print("1.Insert\n2.Delete\n3.Deposit\n4.Withdraw\n5.Transfer\n6.Check Balance\n7.Exit\n")
+choice=int(input("Enter your choice: "))
+if choice==1:
+	insert()
+elif choice==2:
+	delete()
+elif choice==3:
+	deposit()
+elif choice==4:
+	withdraw()
+elif choice==5:
+	transfer()
+elif choice==6:
+	check_balance()
+else:
+	exit	
+
+-----------------------------------------------------------------------------------------------------------------------------------
+pandas1.py
+
+import pandas as pd 
+import matplotlib.pyplot as plt
+import numpy as np
+from tkinter import *
+mymoviedata=pd.read_csv("http://bit.ly/movieusers",sep="|",names=['col1','col2','col3','col4','col5'])
+print(mymoviedata.col3.head())
+mymoviedata['col6'] = mymoviedata.col2.map(str) + " : " + mymoviedata.col3
+print(mymoviedata.columns)
+mymoviedata.head()
+x=mymoviedata["col4"]
+y=mymoviedata["col2"]
+# Set x limits
+
+plt.xlim(2,5)
+
+# Set x ticks
+plt.xticks(np.linspace(1,5,8,endpoint=True),rotation='25')#np.linspaspace(startnum,endnum,nuber of values to be generated)
+plt.ylim(1,100)
+plt.yticks(np.linspace(1,100,8,endpoint=True))
+plt.bar(x,y)
+plt.show()
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+Assignment_bank.py
+
+from random import randint
+sav_dict={}
+ 
+def tempt_dict_to_file():
+    fh=open("account.info",'w')
+            
+    for key in sav_dict.keys():
+        fh.write("%s"%(key))
+        a = sav_dict[key]
+        for valin in a.values():
+            fh.write(":%s" % (valin))
+        fh.write("\n")    
+    fh.close         
+def create():
+    retrive()
+    print("Choose the account type: ")
+    print("1.Savings")
+    print("2.Current")
+    ac_type=int(input("Choose the account type: "))
+    name=input("Enter your name: ")
+    email=input("Enter your email address: ")
+    mobile=int(input("Enter your mobile number: "))    
+    cheq=randint(10000,8000001)
+    pin=randint(1000,9999)
+    aid=randint(101,999)
+    aid=str(aid)
+    if ac_type==1:
+        sav_obj=saving(aid,name,email,mobile,500,cheq)
+        if sav_obj.aid not in sav_dict:
+            sav_dict[sav_obj.aid]={}
+            sav_dict[sav_obj.aid]['Name']=sav_obj.aname
+            sav_dict[sav_obj.aid]['Email']=sav_obj.email
+            sav_dict[sav_obj.aid]['Mobile_No']=sav_obj.mob
+            sav_dict[sav_obj.aid]['Balance']=sav_obj.bal
+            sav_dict[sav_obj.aid]['Cheque_No']=sav_obj.cheqno
+            #retrive()
+            #dict_to_savfile()
+            #retrive()
+            print(sav_dict)
+            #return sav_dict
+            #dict_to_savfile()
+    else:
+        usr=input("Enter your username: ")
+        cur_obj=current(aid,name,email,mobile,500,usr,pin)
+        if cur_obj.aid not in sav_dict:
+            sav_dict[cur_obj.aid]={}
+            sav_dict[cur_obj.aid]['Name']=cur_obj.aname
+            sav_dict[cur_obj.aid]['Email']=cur_obj.email
+            sav_dict[cur_obj.aid]['Mobile_No']=cur_obj.mob
+            sav_dict[cur_obj.aid]['Balance']=cur_obj.bal
+            sav_dict[cur_obj.aid]['Username']=cur_obj.usrname
+            sav_dict[cur_obj.aid]['Pin']=cur_obj.pin
+        #cur_dict.update({cur_obj.aid:{'Name':cur_obj.aname,'Email':cur_obj.email,'Mobile_no':cur_obj.mob,'Balance':cur_obj.bal,'Username':cur_obj.usrname,'Pin':cur_obj.pin}})
+        #retrive()
+        #dict_to_savfile()
+        #retrive()
+        print(sav_dict)
+        #return sav_dict
+def retrive():
+    with open('account.info', 'r') as f:
+        for line in f:
+            line=line.rstrip()
+            spl = line.split(":")
+            length=len(spl)
+            if length == 7:
+                sav_dict[spl[0]] = {'Name':spl[1],'Email':spl[2],'Mobile_No':spl[3],'Balance':spl[4],'UserName':spl[5],'Pin':spl[6]}
+            else:
+                sav_dict[spl[0]] = {'Name':spl[1],'Email':spl[2],'Mobile_No':spl[3],'Balance':spl[4],'Cheque_No':spl[5]}
+    #return(sav_dict) 
+def dict_to_savfile():
+    fh=open("account.info",'w')
+            
+    for key in sav_dict.keys():
+        fh.write("%s"%(key))
+        a = sav_dict[key]
+        for valin in a.values():
+            fh.write(":%s" % (valin))
+        fh.write("\n")    
+    fh.close     
+def check_balance():
+    retrive()
+    inp=input("Enter account id to check balance : ")
+    print("Your account Balance is:",sav_dict[inp]['Balance'])
+    #sav_dict.get(inp,{}).get('Balance')
+def delete():
+    print(sav_dict)
+    inp=input("Enter account id to Delete: ")
+    if inp in sav_dict:
+        dele=sav_dict.pop(inp,None)
+        print(dele)
+        print("Account deleted successfully.")
+    else:
+        print("Account doesn't exists.")  
+
+def transfer():
+    retrive()
+    src=input("Enter account id from which you want to transfer: ")
+    if src not in sav_dict:
+        print("Account doesn't exists.")
+    else:
+        src_bal=sav_dict[src]['Balance']
+        dest=input("Enter account id to transfer amount : ")
+        if dest in sav_dict:
+            dest_bal=sav_dict[dest]['Balance']
+            trans=int(input("Enter the amount to be transfered:"))
+            minus=int(src_bal)-trans
+            add=int(dest_bal)+trans
+            if minus<250:
+                print("Minimum balance should not be less than 250.")
+            else:
+                sav_dict[src]['Balance']=minus
+                sav_dict[dest]['Balance']=add
+                print("Amount transfered successfully.")
+        else:
+            print("Destination account doesn't exists.")
+            
+def depo():
+    retrive()
+    src=input("Enter account id in which you want to deposit: ")
+    if src not in sav_dict:
+        print("Account doesn't exists.")
+    else:
+        src_bal=sav_dict[src]['Balance']
+        trans=int(input("Enter the amount to be deposit:"))
+        add=int(src_bal)+trans
+        sav_dict[src]['Balance']=add
+        print("Amount deposited successfully.")
+def withdraw():
+    retrive()
+    src=input("Enter account id from which you want to withdraw: ")
+    if src not in sav_dict:
+        print("Account doesn't exists.")
+    else:
+        src_bal=sav_dict[src]['Balance']
+        trans=int(input("Enter the amount to be withdrawed:"))
+        minus=int(src_bal)-trans
+        if minus<250:
+            print("Minimum balance should not be less than 250.")
+        else:
+            sav_dict[src]['Balance']=minus
+            print("Amount withdrawed successfully.")        
+
+
+
+class account:
+    def __init__(self,aid=0,aname='',email='',mob=0,bal=500):
+        self.aid=aid
+        self.aname=aname
+        self.email=email
+        self.mob=mob
+        self.bal=bal
+
+    def __str__(self):
+        return str(self.aid)+" "+self.aname+" "+self.email+" "+str(self.mob)+" "+str(self.bal)
+       
+class saving(account):
+    interest=0.06
+    def __init__(self,aid=0,aname='',email='',mob=0,bal=0,cheqno=0):
+        super().__init__(aid,aname,email,mob,bal)
+        self.cheqno=cheqno
+
+    def __str__(self):
+        return super().__str__()+" "+str(self.cheqno)
+        #return super().__str__()+self.__dict__.items()
+    #def sav_interst(self):
+
+
+
+class current(account):
+    def __init__(self,aid=0,aname='',email='',mob=0,bal=0,usrname='',pin=0):
+        super().__init__(aid,aname,email,mob,bal)
+        self.usrname=usrname
+        self.pin=pin
+
+    def __str__(self):
+        return super().__str__()+" "+self.usrname+" "+str(self.pin)
+
+ans='yes'
+while 1:
+    print("    MENU   ")
+    print("1.Add acount")
+    print("2.Delete account")
+    print("3.Deposit")
+    print("4.Withdraw")
+    print("5.Transferfund")
+    print("6.Check balance")
+    print("7.Exit")
+    choice=int(input("Enter your choice "))
+ 
+    if choice==1:
+        create()  
+    elif choice==2:
+        delete()
+    elif choice==3:
+        depo()
+    elif choice==4:
+        withdraw()
+    elif choice==5:
+        transfer()
+    elif choice==6:
+        check_balance()
+    else:
+        tempt_dict_to_file()
+        exit()                        
+        #ans=input("Do you want to continue(yes/no): ")
+
+#obj=current(1,'ayush','abc@gmail.com',8796459752,5000,'ayu',700)
+#print(obj)
+
+-------------------------------------------------------------------------------------------------------------------------------------
+panda2_pie.py
+
+
+import matplotlib.pyplot as plt
+
+year= [2010, 2011, 2014, 2013, 2012, 2010, 2011, 2012]
+sales=[6,8,2,4,6]
+products=['apple', 'mango','tomato','onion','potato']
+slices=sales
+cols=['g','c','m','r','k']
+
+#plt.pie(slices,labels=activities,colors=cols,startangle=90)
+plt.pie(slices,labels=products,colors=cols,startangle=90,shadow=True,explode=(0,0,0.1,0,0))
+
+plt.title('Comparison of sales in 5 products\nyear2010-2014')
+plt.show()
+
+------------------------------------------------------------------------------------------------------------------------------------
+panda2_stack.py
+
+import matplotlib.pyplot as plt
+
+year= [2010, 2011,2012,2013,2014]
+mango=[7,8,6,11,7]
+apple=[2,3,4,3,2]
+tomato=[7,8,7,7,2]
+potato=[8,5,7,8,13]
+onion=[7,8,7,7,2]
+#in stackplot we cannot give label so to ceate legent use following
+
+plt.plot([],[],color='m', label="Apple",linewidth=5)
+plt.plot([],[],color='c', label="Mango",linewidth=5)
+plt.plot([],[],color='g', label="Tomato",linewidth=5)
+plt.plot([],[],color='b', label="Potato",linewidth=5)
+plt.plot([],[],color='r', label="Onion",linewidth=5)
+#this doesnot hav label attribute, s indicates size of marker
+plt.stackplot(year,apple,mango,tomato,potato,onion,colors=['m','c','g','b','r'])
+plt.xlabel('plot number')
+plt.ylabel('Important var')
+plt.legend()
+plt.title('This my first in matplotlib graph\nThis is on next line')
+plt.show()
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+	
+
+
+
+
+
+
+
